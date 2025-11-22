@@ -1,0 +1,44 @@
+{
+  "name": "jspdf-rtl-support",
+  "version": "0.1.0",
+  "description": "RTL rich text printing utilities for jsPDF with justification and styling.",
+  "type": "module",
+  "main": "dist/rtl-support.js",
+  "types": "dist/rtl-support.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/rtl-support.d.ts",
+      "default": "./dist/rtl-support.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "jsPDF",
+    "RTL",
+    "Persian",
+    "Arabic",
+    "text",
+    "printer",
+    "justify"
+  ],
+  "peerDependencies": {
+    "jspdf": ">=2.5.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:render": "node scripts/test-render.mjs",
+    "prepublishOnly": "npm run build && npm run typecheck"
+  },
+  "author": "tilix-coders <contact@tilix.ir>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://tilix.ir/"
+  }
+}
