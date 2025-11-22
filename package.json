@@ -1,6 +1,6 @@
 {
   "name": "jspdf-rtl-support",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RTL rich text printing utilities for jsPDF with justification and styling.",
   "type": "module",
   "main": "dist/rtl-support.js",
@@ -14,7 +14,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "keywords": [
     "jsPDF",
