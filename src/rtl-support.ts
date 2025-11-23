@@ -105,6 +105,52 @@ export class RtlRichTextPrinter {
         this.strikeOffsetRatio = config.strikeOffsetRatio ?? 0.1;
     }
 
+    public getDoc(): jsPDF {
+        return this.doc;
+    }
+
+    public getTextWidth(text: string): number {
+        const processed = this.preprocessText(text);
+        const paragraphs = processed.split('\n');
+        const spaceWidth = this.doc.getTextWidth(RtlRichTextPrinter.SPACE_CHAR);
+
+        let maxWidth = 0;
+        for (const paragraph of paragraphs) {
+            if (!paragraph.trim()) continue;
+            const words = this.tokenize(paragraph);
+            let state: StyleState = { isBold: false, isUnderline: false, isStrike: false, isLtr: false };
+            let width = 0;
+            for (let i = 0; i < words.length; i++) {
+                const { width: w, state: nextState } = this.getWordWidthWithState(words[i], state);
+                width += w;
+                state = nextState;
+                if (i < words.length - 1) width += spaceWidth;
+            }
+            if (width > maxWidth) maxWidth = width;
+        }
+        return maxWidth;
+    }
+
+    public getFontSize(): number {
+        return this.doc.getFontSize();
+    }
+
+    public setFont(name: string, style: 'normal' | 'bold' | 'italic' | 'bolditalic'): void {
+        this.doc.setFont(name, style);
+    }
+
+    public setFontSize(size: number): void {
+        this.doc.setFontSize(size);
+    }
+
+    public getPageWidth(): number {
+        return this.doc.internal.pageSize.width;
+    }
+
+    public getPageHeight(): number {
+        return this.doc.internal.pageSize.height;
+    }
+
     public print(text: string, options: PrintOptions): number {
         const startX = options.startX ?? this.defaultStartX;
         const shouldJustify = options.justify ?? this.justify;

@@ -52,6 +52,13 @@ export declare class RtlRichTextPrinter {
     private readonly underlineOffsetRatio;
     private readonly strikeOffsetRatio;
     constructor(config: RtlPrinterConfig);
+    getDoc(): jsPDF;
+    getTextWidth(text: string): number;
+    getFontSize(): number;
+    setFont(name: string, style: 'normal' | 'bold' | 'italic' | 'bolditalic'): void;
+    setFontSize(size: number): void;
+    getPageWidth(): number;
+    getPageHeight(): number;
     print(text: string, options: PrintOptions): number;
     private preprocessText;
     private tokenize;

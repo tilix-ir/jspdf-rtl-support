@@ -63,6 +63,15 @@ doc.save('example.pdf');
 ### RtlRichTextPrinter
 - Creates an RTL-aware printer bound to a `jsPDF` document.
 
+#### Doc Proxy Methods
+- `getDoc()` returns the bound `jsPDF` instance.
+- `getTextWidth(text)` returns measured width honoring rich-text markup (bold/underline/strike, LTR segments, digit conversion for RTL) across segments and spaces.
+- `getFontSize()` returns current font size.
+- `setFont(name, style)` sets current font.
+- `setFontSize(size)` sets current font size.
+- `getPageWidth()` returns page width.
+- `getPageHeight()` returns page height.
+
 ### Constructor Config (`RtlPrinterConfig`)
 - `doc`: `jsPDF` instance.
 - `maxWidth`: maximum printable line width.

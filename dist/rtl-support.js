@@ -32,6 +32,47 @@ export class RtlRichTextPrinter {
         this.underlineOffsetRatio = (_j = config.underlineOffsetRatio) !== null && _j !== void 0 ? _j : 0.18;
         this.strikeOffsetRatio = (_k = config.strikeOffsetRatio) !== null && _k !== void 0 ? _k : 0.1;
     }
+    getDoc() {
+        return this.doc;
+    }
+    getTextWidth(text) {
+        const processed = this.preprocessText(text);
+        const paragraphs = processed.split('\n');
+        const spaceWidth = this.doc.getTextWidth(RtlRichTextPrinter.SPACE_CHAR);
+        let maxWidth = 0;
+        for (const paragraph of paragraphs) {
+            if (!paragraph.trim())
+                continue;
+            const words = this.tokenize(paragraph);
+            let state = { isBold: false, isUnderline: false, isStrike: false, isLtr: false };
+            let width = 0;
+            for (let i = 0; i < words.length; i++) {
+                const { width: w, state: nextState } = this.getWordWidthWithState(words[i], state);
+                width += w;
+                state = nextState;
+                if (i < words.length - 1)
+                    width += spaceWidth;
+            }
+            if (width > maxWidth)
+                maxWidth = width;
+        }
+        return maxWidth;
+    }
+    getFontSize() {
+        return this.doc.getFontSize();
+    }
+    setFont(name, style) {
+        this.doc.setFont(name, style);
+    }
+    setFontSize(size) {
+        this.doc.setFontSize(size);
+    }
+    getPageWidth() {
+        return this.doc.internal.pageSize.width;
+    }
+    getPageHeight() {
+        return this.doc.internal.pageSize.height;
+    }
     print(text, options) {
         var _a, _b;
         const startX = (_a = options.startX) !== null && _a !== void 0 ? _a : this.defaultStartX;

@@ -1,6 +1,6 @@
 {
 "name": "jspdf-rtl-support",
-"version": "0.1.4",
+"version": "0.2.7",
 "description": "RTL rich text printing utilities for jsPDF with justification and styling.",
 "type": "module",
 "main": "dist/rtl-support.js",
@@ -45,9 +45,5 @@
 "repository": {
 "type": "git",
 "url": "git+[https://github.com/tilix-ir/jspdf-rtl-support.git](https://github.com/tilix-ir/jspdf-rtl-support.git)"
-},
-"bugs": {
-"url": "[https://github.com/tilix-ir/jspdf-rtl-support/issues](https://github.com/tilix-ir/jspdf-rtl-support/issues)"
-},
-"homepage": "[https://github.com/tilix-ir/jspdf-rtl-support#readme](https://github.com/tilix-ir/jspdf-rtl-support#readme)"
+}
 }
