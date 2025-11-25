@@ -42,8 +42,8 @@
 },
 "author": "tilix-coders [contact@tilix.ir](mailto:contact@tilix.ir)",
 "license": "MIT",
-"repository": {
-"type": "git",
-"url": "git+[https://github.com/tilix-ir/jspdf-rtl-support.git](https://github.com/tilix-ir/jspdf-rtl-support.git)"
-}
+ "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tilix-ir/jspdf-rtl-support.git"
+  }
 }
